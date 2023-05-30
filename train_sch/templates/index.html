@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+
+
+  <title>Train_Search</title>
+  <title>table_maker</title>
+
+  <style>
+    form {
+      margin: 30px auto;
+      width: 90% !important;
+    }
+
+    form h2 {
+      margin: 20px 0px 30px 0px;
+    }
+
+    form input,
+    label {
+      margin: 5px 0px;
+    }
+
+    .container {
+      width: 50% !important;
+    }
+
+    .info {
+      display: flex;
+    }
+
+    table {
+      width: 600px;
+      margin: 10px -2px;
+      caption-side: top;
+    }
+
+    td {
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    th {
+      border: 1px solid black;
+      text-align: center;
+      background-color: lightgrey;
+    }
+  </style>
+</head>
+
+<body>
+  <form class="container" method="post">
+    <h2>Train_Search</h2>
+
+    <div class="form-group">
+      <title>table</title>
+      <div>
+        <div style="border:3px solid; padding:10px;">
+          <h5>열차 선택</h5>
+          <div>
+            <label><input type="radio" name="train_value" value="99" checked>전체</label>
+          </div>
+          <div>
+            <label><input type="radio" name="train_value" style="color:black" value="00"> KTX </label>
+            <label><input type="radio" name="train_value" value="01"> 새마을호 </label>
+            <label><input type="radio" name="train_value" value="02"> 무궁화호 </label>
+            <label><input type="radio" name="train_value" value="03"> 통근열차 </label>
+            <label><input type="radio" name="train_value" value="04"> 누리로 </label>
+            <label><input type="radio" name="train_value" value="06"> AREX직통 </label>
+          </div>
+          <div>
+            <label><input type="radio" name="train_value" value="07"> KTX-산천(A-type) </label>
+            <label><input type="radio" name="train_value" value="08"> ITX-새마을 </label>
+            <label><input type="radio" name="train_value" value="09"> ITX-청춘 </label>
+            <label><input type="radio" name="train_value" value="10"> KTX-산천(B-type) </label>
+            <label><input type="radio" name="train_value" value="16"> KTX-이음 </label>
+            <label><input type="radio" name="train_value" value="17"> SRT </label>
+          </div>
+          <label>Station Name</label>
+          <div>
+            <input type="text" class="form-control" placeholder="start_name" name="start">
+            <!--<button type="button" class="btn btn-primary" button
+          onclick="window.open('/select','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');"
+          style="float: right;">조회</button>-->
+          </div>
+          <div>
+            <input type="text" class="form-control" placeholder="end_name" name="end">
+            <!--<button type="button" class="btn btn-primary" style="float: right;">조회</button>-->
+          </div>
+          <div>
+            <label><input type="radio" name="ride" value="train" checked>고속열차</label>
+            <label><input type="radio" name="ride" value="bus">고속버스</label>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary" style="float: right;">Search Now</button>
+      </div>
+    </div>
+    <div>
+      <table>
+        <caption>시간표</caption>
+        <tr>
+          <th width="40">차랑명</th>
+          <th width="70">출발역 / 터미널</th>
+          <th width="70">도착역 / 터미널</th>
+          <th width="60">출발 시간</th>
+          <th width="60">도착 시간</th>
+          <th width="80">소요 시간</th>
+        </tr>
+        {% for item in list %}
+        <tr>
+          {% for i in item %}
+          <td>
+            <option>{{i}}</option>
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
+      {% if valuecheck == 1 %}
+      <div>
+        <h1>차량이 존재하지 않습니다.</h1>
+      </div>
+      {% endif %}
+    </div>
+  </form>
+
+  <div class="container">
+  </div>
+</body>
+
+</html>

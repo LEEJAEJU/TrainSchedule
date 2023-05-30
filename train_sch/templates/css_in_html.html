@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charest="UTF-8">
+    <title>Home Network</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>고속버스 / 고속철도 시간표 조회</h2>
+        </div>
+        <div class="main">
+            <div>
+                <button onclick="index2()">big_Room_on</button>
+                <button type="submit" class="btn btn-primary" button onclick="window.close()">Search Now</button>
+            </div>
+        </div>
+        <script>
+            function index2() {
+                fetch("/select")
+                    .then(response => response.text())
+                window.close()
+            }
+        </script>
+    </div>
+    </div>
+</body>
+
+</html>
